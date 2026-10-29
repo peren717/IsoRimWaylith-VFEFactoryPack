@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- IsoRimZ: VFE Factory's automated drill platform digs into the ground, so it can only be built on the ground floor
+       ("Must be built on the ground"), like the deep drill (ProjectZ.GroundOnlyDef). -->
+  <ProjectZ.GroundOnlyDef>
+    <defName>VFEF_IsoRimZ_GroundOnly</defName>
+    <things>
+      <li MayRequire="VanillaExpanded.VFEFactory">VFEFactory_AutomatedDrillPlatform</li>
+    </things>
+  </ProjectZ.GroundOnlyDef>
+</Defs>
