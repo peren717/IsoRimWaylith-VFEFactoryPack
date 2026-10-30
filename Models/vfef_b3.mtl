@@ -1,0 +1,65 @@
+# IsoRim Waylith - VFE Factory Pack, batch B3: fixed colours sampled from VFE Factory's factory textures (lifted ~1.1x for
+# the 3D shading). Metal parts carry IsoRim's Metal swatch. B1 (vfef_in / vfef_out / vfef_slot) and B2 (vfef2_*) are reused.
+newmtl vfef3_rust
+Kd 0.40 0.25 0.20
+newmtl vfef3_drum
+Kd 0.60 0.58 0.57
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef3_bar
+Kd 0.64 0.63 0.62
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef3_tray
+Kd 0.36 0.31 0.26
+newmtl glow_vfef3_slot
+Kd 0.98 0.60 0.16
+map_Kd IsoRim/Swatches/Glow
+newmtl vfef3_tank
+Kd 0.65 0.65 0.65
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef3_brownpipe
+Kd 0.50 0.36 0.24
+newmtl vfef3_biomass
+Kd 0.17 0.18 0.06
+newmtl vfef3_teal
+Kd 0.22 0.40 0.46
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef3_brass
+Kd 0.78 0.70 0.42
+newmtl vfef3_brass_dk
+Kd 0.48 0.42 0.22
+newmtl vfef3_lead
+Kd 0.66 0.66 0.66
+newmtl vfef3_red
+Kd 0.62 0.25 0.25
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef3_red_dk
+Kd 0.46 0.20 0.20
+newmtl vfef3_cloth
+Kd 0.86 0.86 0.86
+newmtl vfef3_white
+Kd 0.97 0.97 0.97
+newmtl vfef3_spool_grey
+Kd 0.70 0.70 0.70
+newmtl vfef3_spool_green
+Kd 0.43 0.66 0.42
+newmtl vfef3_spool_red
+Kd 0.92 0.47 0.40
+newmtl vfef3_cream
+Kd 0.92 0.80 0.64
+newmtl vfef3_can
+Kd 0.92 0.92 0.92
+newmtl vfef3_lid
+Kd 0.33 0.39 0.36
+newmtl glow_vfef3_hot
+Kd 0.70 0.30 0.09
+map_Kd IsoRim/Swatches/Glow
+newmtl vfef3_glow_off
+Kd 0.34 0.24 0.18
+newmtl vfef3_lit_base
+Kd 0.32 0.17 0.08
+newmtl beam_vfef3_slot
+Kd 0.75 0.36 0.06
+newmtl beam_vfef3_lining
+Kd 0.70 0.30 0.05
+newmtl beam_vfef3_hot
+Kd 0.50 0.20 0.04

@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using UnityEngine;
+using RimWorld;
 using Verse;
 
 namespace IsoRimVFEFactoryPack
@@ -18,6 +19,9 @@ namespace IsoRimVFEFactoryPack
     //    the flow arrows of a selected belt lie on the belt top instead of under the models (DrawFlowArrow); the
     //    underground ends' "no link" icon stands over the hood like IsoRim's other overlay icons (DrawAt); the stack-count
     //    labels of items on a belt sit under the item as seen by the 3D camera (GetLabelScreenPos).
+    //  - Factory glow (batch B3): IsoRim draws glow* faces lit always (it darkens them only for a CompGlower, which VFE's
+    //    factories have not). A VFE Factory machine without power is in the model state "vfef_unpowered"; ModelDefs with
+    //    that state in byState (smelter, conveyor oven) draw their model with the glow faces dark then.
     // VFE Factory is reached by name: a missing type or method leaves that part as VFE draws it (logged once).
     [StaticConstructorOnStartup]
     public static class Pack
@@ -38,6 +42,7 @@ namespace IsoRimVFEFactoryPack
                     return;
                 }
                 Conveyors.Run(new Harmony("peren.isorimwaylith.vfefactorypack"));
+                IsoRim.Api.AddModelState(Factories.State);
             }
             catch (Exception e)
             {
@@ -199,6 +204,23 @@ namespace IsoRimVFEFactoryPack
                 Log.ErrorOnce(Pack.Tag + "Placing a belt item label failed: " + e, 93690003);
                 return true;
             }
+        }
+    }
+
+    internal static class Factories
+    {
+        internal const string Unpowered = "vfef_unpowered";
+
+        // A VFE Factory machine whose power is off (no grid, not enough power, switched off: CompPowerTrader.PowerOn).
+        // Things without a power comp (belts, hoppers) and other mods' things have no state here.
+        public static string State(Thing t)
+        {
+            if (t == null || !t.Spawned || !t.def.defName.StartsWith("VFEFactory_", StringComparison.Ordinal))
+            {
+                return null;
+            }
+            CompPowerTrader p = (t as ThingWithComps)?.GetComp<CompPowerTrader>();
+            return p != null && !p.PowerOn ? Unpowered : null;
         }
     }
 }

@@ -35,6 +35,19 @@ them. Machines may be taller than a storey (no `wallFit`): IsoRim reads their re
 built over the tall ones (drill platform, distillery), which stand in open double-height rooms. Notes and review sheets:
 `model-review/vfefactory_b2/` and the header of `tools/make_vfefactory_b2.py`.
 
+## For model makers: the 3x4 and 3x5 factories (batch B3)
+
+Smelter, biofuel refinery and ammunition press (3x4) and conveyor oven, autoloom and automated cannery (3x5; the cannery
+only with Vanilla Cooking Expanded, its ModelDef has `MayRequire` and its gate runs in `PatchOperationFindMod`). For the
+even 3x4 size the model's origin is the footprint centre, half a cell north of the thing's Position in its own frame. Port
+cells in the model frame: output always south (z -2.5 on 3x4, -3 on 3x5); inputs north at x -1, 0, 1 (smelter, refinery,
+oven), at x -1 and 1 (ammunition press), and west and east of the north row (z 2, autoloom and cannery, whose input hoods
+open sideways). The smelter (2.08) and the refinery (1.84) are taller than a storey. Lit parts (the smelter's slot ring, the
+oven's tunnel) are IsoRim `beam_` light faces over a dark-orange base, so they keep their brightness at night; a machine
+without power is in the pack's model state `vfef_unpowered` and its ModelDef's `byState` draws the `_unlit` model without
+them. Parts, sizes and review sheets:
+`model-review/vfefactory_b3/` and the header of `tools/make_vfefactory_b3.py`.
+
 Vanilla Furniture Expanded - Factory is made by the Vanilla Expanded team (Oskar Potocki and others). The models are new, made after VFE's art; this pack contains no files of the original mod.
 
 MIT License.
