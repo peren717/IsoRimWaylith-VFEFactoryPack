@@ -25,6 +25,8 @@ namespace IsoRimVFEFactoryPack
     //  - Autofarmer (batch B5): IsoRim bakes the base's ModelDef (a RealtimeOnly building: its realtime body layer); VFE's
     //    own DrawAt override (the flat base and gantry sprites) is skipped while that model stands in, and the gantry model
     //    is drawn instead with Api.DrawModel where VFE draws its sprite (see Autofarmer).
+    //  - Items on the belts (playtest 1, IsoRim Api 40): drawn as IsoRim draws items on the ground, by the player's item
+    //    settings (Api.DrawItem), at VFE's moving item position on the belt top (see BeltItems).
     // VFE Factory is reached by name: a missing type or method leaves that part as VFE draws it (logged once).
     [StaticConstructorOnStartup]
     public static class Pack
@@ -48,6 +50,14 @@ namespace IsoRimVFEFactoryPack
                 Conveyors.Run(h);
                 IsoRim.Api.AddModelState(Factories.State);
                 Autofarmer.Run(h);
+                if (IsoRim.Api.Version >= 40)
+                {
+                    BeltItems.Run(h);
+                }
+                else
+                {
+                    Log.Message(Tag + "IsoRim is older than Api 40: items on VFE Factory belts stay VFE's flat sprites.");
+                }
             }
             catch (Exception e)
             {
@@ -270,6 +280,92 @@ namespace IsoRimVFEFactoryPack
                 Log.ErrorOnce(Pack.Tag + "Drawing the autofarmer's gantry failed (VFE's sprites drawn instead): " + e, 93690004);
                 return true;
             }
+        }
+    }
+
+    // Items riding the belts (playtest 1). VFE's Building_Conveyor.DrawAt draws each item it carries with
+    // item.DynamicDrawPhaseAt(DrawPhase.Draw, pos) at its own moving position (CalculateItemPosition: along the belt, round a
+    // turn, out of a hopper); IsoRim only lifted that flat sprite to the belt top, so belt items ignored the player's item
+    // settings (models, solid sprites, thickness). That call is replaced here: while the belt's model stands in (3D view on),
+    // the item is drawn with IsoRim's Api.DrawItem (Api 40) at the same x / z on the belt top, as items on the ground are
+    // drawn, following setting changes live; VFE's own drawing of it is then left out. Anything else (2D, a belt without its
+    // model, DrawItem drawing nothing, an error) draws it as VFE does. Never throws into VFE's loop (VFE drops an item off the
+    // belt when its drawing throws).
+    internal static class BeltItems
+    {
+        public static int Drawn, FellBack;   // harness counters
+
+        private static readonly MethodInfo DynamicDraw = AccessTools.Method(typeof(Thing), nameof(Thing.DynamicDrawPhaseAt),
+            new[] { typeof(DrawPhase), typeof(Vector3), typeof(bool) });
+
+        internal static void Run(Harmony h)
+        {
+            Type conveyor = AccessTools.TypeByName("VanillaFurnitureExpandedFactory.Building_Conveyor");
+            MethodInfo draw = conveyor != null ? AccessTools.DeclaredMethod(conveyor, "DrawAt", new[] { typeof(Vector3), typeof(bool) }) : null;
+            if (draw == null || DynamicDraw == null)
+            {
+                Log.Warning(Pack.Tag + "VFE Factory's Building_Conveyor.DrawAt was not found: items on belts stay VFE's flat sprites.");
+                return;
+            }
+            try
+            {
+                h.Patch(draw, transpiler: new HarmonyMethod(typeof(BeltItems), nameof(DrawAt_Transpiler)));
+            }
+            catch (Exception e)
+            {
+                Log.Warning(Pack.Tag + "Could not patch the belt items' drawing (left as VFE draws them): " + e.Message);
+            }
+        }
+
+        // item.DynamicDrawPhaseAt(phase, pos, flip) -> Ride(item, phase, pos, flip, this)
+        public static IEnumerable<CodeInstruction> DrawAt_Transpiler(IEnumerable<CodeInstruction> code)
+        {
+            MethodInfo ride = AccessTools.Method(typeof(BeltItems), nameof(Ride));
+            int n = 0;
+            foreach (CodeInstruction ci in code)
+            {
+                if (ci.Calls(DynamicDraw))
+                {
+                    yield return new CodeInstruction(OpCodes.Ldarg_0);
+                    yield return new CodeInstruction(OpCodes.Call, ride).MoveLabelsFrom(ci).MoveBlocksFrom(ci);
+                    n++;
+                    continue;
+                }
+                yield return ci;
+            }
+            if (n == 0)
+            {
+                Log.Warning(Pack.Tag + "VFE Factory's belt drawing changed: items on belts stay VFE's flat sprites.");
+            }
+        }
+
+        public static void Ride(Thing item, DrawPhase phase, Vector3 at, bool flip, Thing belt)
+        {
+            if (phase == DrawPhase.Draw && item != null && IsoRim.Api.ViewReady && IsoRim.Api.ModelStandsIn(belt))
+            {
+                try
+                {
+                    if (Draw(item, at))
+                    {
+                        Drawn++;
+                        return;
+                    }
+                    FellBack++;
+                }
+                catch (Exception e)
+                {
+                    FellBack++;
+                    Log.ErrorOnce(Pack.Tag + "Drawing an item on a belt failed (VFE's sprite drawn instead): " + e, 93690005);
+                }
+            }
+            item.DynamicDrawPhaseAt(phase, at, flip);
+        }
+
+        // Its own method: only reached with IsoRim Api 40 (Run is not called before), so an older IsoRim never meets DrawItem.
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+        private static bool Draw(Thing item, Vector3 at)
+        {
+            return IsoRim.Api.DrawItem(item, new Vector3(at.x, Pack.BeltTop, at.z));
         }
     }
 
