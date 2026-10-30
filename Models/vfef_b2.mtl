@@ -1,0 +1,62 @@
+# IsoRim Waylith - VFE Factory Pack, batch B2: fixed colours sampled from VFE Factory's factory textures (lifted ~1.1x for
+# the 3D shading). Metal parts carry IsoRim's Metal swatch. B1's vfef_in / vfef_out / vfef_slot are reused (vfef_b1.mtl).
+newmtl vfef2_base
+Kd 0.44 0.44 0.44
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef2_pad
+Kd 0.37 0.33 0.30
+newmtl vfef2_light
+Kd 0.56 0.55 0.54
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef2_mid
+Kd 0.42 0.42 0.42
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef2_dark
+Kd 0.29 0.29 0.29
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef2_roller
+Kd 0.27 0.28 0.31
+newmtl vfef2_roller_hi
+Kd 0.42 0.44 0.48
+newmtl vfef2_grille
+Kd 0.20 0.20 0.21
+newmtl vfef2_stone
+Kd 0.52 0.51 0.51
+newmtl vfef2_green
+Kd 0.44 0.48 0.39
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef2_bore
+Kd 0.17 0.17 0.17
+newmtl vfef2_body
+Kd 0.66 0.64 0.62
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef2_blood
+Kd 0.55 0.22 0.21
+newmtl vfef2_blade
+Kd 0.78 0.78 0.80
+newmtl vfef2_pipe
+Kd 0.42 0.23 0.21
+newmtl vfef2_mesh
+Kd 0.24 0.20 0.20
+newmtl vfef2_kettle
+Kd 0.64 0.62 0.58
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef2_copper
+Kd 0.52 0.35 0.23
+newmtl vfef2_furnace
+Kd 0.40 0.31 0.27
+newmtl vfef2_door
+Kd 0.52 0.51 0.50
+map_Kd IsoRim/Swatches/Metal
+newmtl glow_vfef_furnace
+Kd 0.98 0.42 0.12
+map_Kd IsoRim/Swatches/Glow
+newmtl vfef2_teal
+Kd 0.40 0.45 0.46
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef2_concrete
+Kd 0.62 0.60 0.58
+newmtl vfef2_moss
+Kd 0.50 0.51 0.44
+newmtl vfef2_dial
+Kd 0.30 0.30 0.31

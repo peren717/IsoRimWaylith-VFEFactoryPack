@@ -20,10 +20,20 @@ Requires IsoRim Waylith (latest version), Vanilla Furniture Expanded - Factory a
 
 ## For model makers: the belt height rule
 
-All belt pieces share one height, **0.22 cells** (`Pack.BeltTop`): items ride at it and enter or leave machines at it.
+All belt pieces share one height, **0.22 cells** (`Pack.BeltTop`): items ride at it and enter or leave hoppers at it.
 Every belt model's top and `surfaceHeight` is 0.22; the hopper's bin floor and spout and the underground ends' mouths meet
-it; factory models put the bottom of every input or output opening at 0.22, so items never step up or down. Notes and the
-review sheets: `model-review/vfefactory_b1/analysis.md`.
+it; factory machines use the machine port rule below. Notes and the review sheets: `model-review/vfefactory_b1/`.
+
+## For model makers: the machine port rule
+
+Factory machines (batch B2 on) put the bottom edge of every input and output port at **0.45 cells** (`MACHINE_PORT`), a
+bit above the factory hopper's top (0.40), on every machine alike: items drop from a machine port into the hopper below it
+and are lifted from a hopper into a machine at one height. Belt pieces, the hoppers' belt-side spout and bin floor and the
+underground mouths keep the belt top 0.22. VFE attaches hoppers by cell: a hopper on the machine's interaction cell is its
+output, a hopper on one of the running process's input slots is an input; each model has its ports where VFE's art draws
+them. Machines may be taller than a storey (no `wallFit`): IsoRim reads their real height, and with IsoRimZ no floor can be
+built over the tall ones (drill platform, distillery), which stand in open double-height rooms. Notes and review sheets:
+`model-review/vfefactory_b2/` and the header of `tools/make_vfefactory_b2.py`.
 
 Vanilla Furniture Expanded - Factory is made by the Vanilla Expanded team (Oskar Potocki and others). The models are new, made after VFE's art; this pack contains no files of the original mod.
 
