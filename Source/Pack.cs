@@ -22,6 +22,9 @@ namespace IsoRimVFEFactoryPack
     //  - Factory glow (batch B3): IsoRim draws glow* faces lit always (it darkens them only for a CompGlower, which VFE's
     //    factories have not). A VFE Factory machine without power is in the model state "vfef_unpowered"; ModelDefs with
     //    that state in byState (smelter, conveyor oven, crematorium; more in B4) draw their unlit model then.
+    //  - Autofarmer (batch B5): IsoRim bakes the base's ModelDef (a RealtimeOnly building: its realtime body layer); VFE's
+    //    own DrawAt override (the flat base and gantry sprites) is skipped while that model stands in, and the gantry model
+    //    is drawn instead with Api.DrawModel where VFE draws its sprite (see Autofarmer).
     // VFE Factory is reached by name: a missing type or method leaves that part as VFE draws it (logged once).
     [StaticConstructorOnStartup]
     public static class Pack
@@ -41,8 +44,10 @@ namespace IsoRimVFEFactoryPack
                     Log.Message(Tag + "IsoRim is older than Api 39: VFE Factory conveyors keep IsoRim's automatic shapes.");
                     return;
                 }
-                Conveyors.Run(new Harmony("peren.isorimwaylith.vfefactorypack"));
+                Harmony h = new Harmony("peren.isorimwaylith.vfefactorypack");
+                Conveyors.Run(h);
                 IsoRim.Api.AddModelState(Factories.State);
+                Autofarmer.Run(h);
             }
             catch (Exception e)
             {
@@ -202,6 +207,67 @@ namespace IsoRimVFEFactoryPack
             catch (Exception e)
             {
                 Log.ErrorOnce(Pack.Tag + "Placing a belt item label failed: " + e, 93690003);
+                return true;
+            }
+        }
+    }
+
+    // The autofarmer's moving gantry in 3D (batch B5). VFE's Building_Autofarmer.DrawAt draws two flat sprites: the base
+    // (AutofarmerBase) at the building and the gantry (Autofarmer) at drawLoc + facing * currentOffset (0 parked over the
+    // base .. zoneLength rows ahead). While IsoRim's base model stands in (Api.ModelStandsIn: 3D view on, the base baked),
+    // that DrawAt is skipped and the gantry model (Models/vfef_autofarmer_gantry.obj, lifted over the crops by its own
+    // shape: nothing spanning the field is lower than 1.50) is drawn at the same spot, turned with the facing; IsoRim puts
+    // it on the building's floor (Api 10). VFE's harvest and sow effecters come from its Tick and stay. In 2D, or if
+    // VFE's field / method or the model is missing (logged once), VFE draws its sprites as before.
+    internal static class Autofarmer
+    {
+        private const string GantryModel = "Models/vfef_autofarmer_gantry.obj";
+        private static FieldInfo offset;
+        private static IsoRim.ModelHandle gantry;
+
+        internal static void Run(Harmony h)
+        {
+            Type farmer = AccessTools.TypeByName("VanillaFurnitureExpandedFactory.Building_Autofarmer");
+            MethodInfo draw = farmer != null ? AccessTools.DeclaredMethod(farmer, "DrawAt", new[] { typeof(Vector3), typeof(bool) }) : null;
+            offset = farmer != null ? AccessTools.Field(farmer, "currentOffset") : null;
+            if (draw == null || offset == null || offset.FieldType != typeof(float))
+            {
+                Log.Warning(Pack.Tag + "VFE Factory's Building_Autofarmer (DrawAt, currentOffset) was not found: the autofarmer stays as VFE draws it.");
+                return;
+            }
+            gantry = IsoRim.Api.LoadModel(GantryModel);
+            if (gantry == null)
+            {
+                Log.Warning(Pack.Tag + GantryModel + " could not be loaded: the autofarmer stays as VFE draws it.");
+                return;
+            }
+            try
+            {
+                h.Patch(draw, prefix: new HarmonyMethod(typeof(Autofarmer), nameof(DrawAt_Prefix)));
+            }
+            catch (Exception e)
+            {
+                Log.Warning(Pack.Tag + "Could not patch the autofarmer's drawing (left as VFE draws it): " + e.Message);
+            }
+        }
+
+        public static bool DrawAt_Prefix(Thing __instance, Vector3 drawLoc)
+        {
+            if (!IsoRim.Api.ModelStandsIn(__instance))
+            {
+                return true;
+            }
+            try
+            {
+                Rot4 rot = __instance.Rotation;
+                Vector3 at = drawLoc + rot.FacingCell.ToVector3() * (float)offset.GetValue(__instance);
+                at.y = 0f;
+                IsoRim.Api.DrawModel(gantry, at, rot.AsAngle, Vector3.one, Color.white);
+                return false;
+            }
+            catch (Exception e)
+            {
+                Log.ErrorOnce(Pack.Tag + "Drawing the autofarmer's gantry failed (VFE's sprites drawn instead): " + e, 93690004);
                 return true;
             }
         }

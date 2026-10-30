@@ -1,0 +1,79 @@
+# IsoRim Waylith - VFE Factory Pack, batch B5: fixed colours sampled from VFE Factory's autofarmer, booster and heatsink
+# textures (lifted ~1.1x for the 3D shading). Metal parts carry IsoRim's Metal swatch.
+newmtl vfef5_hazard_y
+Kd 0.86 0.82 0.17
+newmtl vfef5_hazard_dk
+Kd 0.21 0.21 0.21
+newmtl vfef5_rim
+Kd 0.44 0.44 0.44
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_lip
+Kd 0.50 0.50 0.50
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_lip_brown
+Kd 0.41 0.38 0.35
+newmtl vfef5_ramp_brown
+Kd 0.22 0.20 0.19
+newmtl vfef5_pit
+Kd 0.20 0.20 0.20
+newmtl vfef5_ramp
+Kd 0.27 0.27 0.27
+newmtl vfef5_pad
+Kd 0.26 0.26 0.26
+newmtl vfef5_mark_dk
+Kd 0.17 0.17 0.17
+newmtl vfef5_grey
+Kd 0.52 0.52 0.52
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_grey_dk
+Kd 0.38 0.38 0.38
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_soil
+Kd 0.47 0.43 0.33
+newmtl vfef5_soil_dk
+Kd 0.37 0.34 0.26
+newmtl vfef5_green
+Kd 0.45 0.48 0.41
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_green_dk
+Kd 0.34 0.36 0.30
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_box
+Kd 0.51 0.49 0.48
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_panel
+Kd 0.40 0.39 0.38
+newmtl vfef5_dark
+Kd 0.18 0.18 0.18
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_tyre
+Kd 0.13 0.13 0.13
+newmtl vfef5_hub
+Kd 0.40 0.40 0.40
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_tine
+Kd 0.60 0.60 0.60
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_slab
+Kd 0.31 0.31 0.31
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_cap
+Kd 0.24 0.24 0.24
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_rib
+Kd 0.15 0.15 0.15
+newmtl vfef5_collar
+Kd 0.44 0.37 0.31
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_core
+Kd 0.56 0.54 0.53
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_block
+Kd 0.47 0.46 0.45
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_frame
+Kd 0.36 0.35 0.35
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef5_fin
+Kd 0.68 0.58 0.42
+map_Kd IsoRim/Swatches/Metal

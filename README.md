@@ -5,7 +5,7 @@
 - 3D conveyor belts: straight belts, turns, mergers, splitters, filters, refuelling ports and underground belts
 - 3D factory hoppers that show input and output like VFE's
 - Items ride on the belts, with their stack counts and flow arrows on top
-- With IsoRimZ: drill platforms stay on the ground; autofarmers work only on their own floor
+- With IsoRimZ: drill platforms stay on the ground; autofarmers work only on their own floor, with no floor built over them or their field
 
 Requires IsoRim Waylith (latest version), Vanilla Furniture Expanded - Factory and Vanilla Expanded Framework. IsoRimZ is optional. Load after all of them. With an older IsoRim Waylith (before Api 39) the pack still loads, without the conveyor models.
 
@@ -14,7 +14,7 @@ Requires IsoRim Waylith (latest version), Vanilla Furniture Expanded - Factory a
 - 3D 传送带：直带、转弯、合流、分流、过滤器、加料口和地下传送带
 - 3D 工厂料斗，和 VFE 一样显示输入和输出
 - 物品在传送带上移动，数量标签和流向箭头显示在上方
-- 配合 IsoRimZ：自动钻井平台只能建在地面；自动农场只在自己所在的楼层工作
+- 配合 IsoRimZ：自动钻井平台只能建在地面；自动农场只在自己所在的楼层工作，其上方和作业区上方不能建楼板
 
 需要最新版 IsoRim Waylith、Vanilla Furniture Expanded - Factory 和 Vanilla Expanded Framework。IsoRimZ 可选。请放在它们之后加载。IsoRim Waylith 版本较旧（Api 39 之前）时也能加载，只是没有传送带模型。
 
@@ -59,6 +59,18 @@ the output strip) use the B3 glow method (`beam_` faces, `_unlit` model in the s
 crematorium's furnace mouth since this batch. Where VFE's south, east and west art keeps the tanks, vats or bowl at the back of
 the picture, the models follow the north art. Parts, sizes and review sheets: `model-review/vfefactory_b4/` and the header
 of `tools/make_vfefactory_b4.py`.
+
+## For model makers: the autofarmer, booster and heatsink (batch B5)
+
+The autofarmer's base (the 7x3 building: a low tray, 0.20) is a ModelDef; its moving gantry (`Models/vfef_autofarmer_gantry.obj`,
+7x3 like VFE's sprite, 2.16 tall) is drawn by the pack every frame (Source/Pack.cs, Autofarmer: VFE's `DrawAt` is skipped while
+the base model stands in and the gantry is drawn with IsoRim `Api.DrawModel` at VFE's spot, drawLoc + facing x currentOffset).
+Everything spanning the field hangs at 1.50 or higher (IsoRim's full-grown corn reaches 1.44 with its size jitter); only the
+wheels stand in the outer half of the outer crop columns, as in VFE's art. With IsoRimZ (SourceZ) the autofarmer counts as too
+tall for a floor over it, no slab can be laid over its zone, it can't be placed with its first rows under a floor, and a zone
+made longer under a floor counts as obstructed. Booster (capsule, 0.84) and heatsink (copper fins, 1.00) follow VFE's north and
+east art (the game reuses them for south and west). Parts and review sheets: `model-review/vfefactory_b5/` and the header of
+`tools/make_vfefactory_b5.py`.
 
 Vanilla Furniture Expanded - Factory is made by the Vanilla Expanded team (Oskar Potocki and others). The models are new, made after VFE's art; this pack contains no files of the original mod.
 
