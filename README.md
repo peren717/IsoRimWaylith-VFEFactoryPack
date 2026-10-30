@@ -2,21 +2,23 @@
 
 [Vanilla Furniture Expanded - Factory](https://steamcommunity.com/sharedfiles/filedetails/?id=3686924415) in the 3D view of [IsoRim Waylith](https://github.com/peren717/IsoRim-1.7) and on the floors of [IsoRimZ](https://github.com/peren717/IsoRim-ProjectZ) (RimWorld 1.7).
 
-- 3D conveyor belts: straight belts, turns, mergers, splitters, filters, refuelling ports and underground belts
-- 3D factory hoppers that show input and output like VFE's
-- Items ride on the belts, with their stack counts and flow arrows on top
-- With IsoRimZ: drill platforms stay on the ground; autofarmers work only on their own floor, with no floor built over them or their field
+- 3D models for all factories, conveyor belts, factory hoppers, the autofarmer, boosters and heatsinks
+- Items on the belts follow your IsoRim item settings
+- With IsoRimZ: tall machines need an open double-height room; drill platforms stay on the ground; autofarmers work on their own floor
 
-Requires IsoRim Waylith (latest version), Vanilla Furniture Expanded - Factory and Vanilla Expanded Framework. IsoRimZ is optional. Load after all of them. With an older IsoRim Waylith (before Api 39) the pack still loads, without the conveyor models.
+Requires IsoRim Waylith (latest version), Vanilla Furniture Expanded - Factory and Vanilla Expanded Framework. IsoRimZ is optional. Load after all of them. With an older IsoRim Waylith the pack still loads, without the models.
 
 让 Vanilla Furniture Expanded - Factory 在 IsoRim Waylith 的 3D 视角和 IsoRimZ 的楼层上正常工作。
 
-- 3D 传送带：直带、转弯、合流、分流、过滤器、加料口和地下传送带
-- 3D 工厂料斗，和 VFE 一样显示输入和输出
-- 物品在传送带上移动，数量标签和流向箭头显示在上方
-- 配合 IsoRimZ：自动钻井平台只能建在地面；自动农场只在自己所在的楼层工作，其上方和作业区上方不能建楼板
+- 所有工厂、传送带、工厂料斗、自动农场、增压器和散热器的 3D 模型
+- 传送带上的物品跟随 IsoRim 的物品显示设置
+- 配合 IsoRimZ：高大的机器需要挑高空间；自动钻井平台只能建在地面；自动农场只在自己的楼层工作
 
-需要最新版 IsoRim Waylith、Vanilla Furniture Expanded - Factory 和 Vanilla Expanded Framework。IsoRimZ 可选。请放在它们之后加载。IsoRim Waylith 版本较旧（Api 39 之前）时也能加载，只是没有传送带模型。
+需要最新版 IsoRim Waylith、Vanilla Furniture Expanded - Factory 和 Vanilla Expanded Framework。IsoRimZ 可选。请放在它们之后加载。IsoRim Waylith 版本较旧时也能加载，只是没有模型。
+
+Vanilla Furniture Expanded - Factory is made by the Vanilla Expanded team (Oskar Potocki and others). The models are new, made after VFE's art; this pack contains no files of the original mod.
+
+MIT License.
 
 ## For model makers: the belt height rule
 
