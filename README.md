@@ -48,6 +48,18 @@ without power is in the pack's model state `vfef_unpowered` and its ModelDef's `
 them. Parts, sizes and review sheets:
 `model-review/vfefactory_b3/` and the header of `tools/make_vfefactory_b3.py`.
 
+## For model makers: the 5x5 and 5x3 factories (batch B4)
+
+Automated assembler, alloy forge and machining bay (5x5) and neutroamine synthesizer and medicine granulator (5x3). Both
+sizes are odd, so the model's origin is the thing's Position. Port cells in the model frame: output always south (z -3 on
+5x5, -2 on 5x3); inputs north at x -1 and 1 plus west and east of the middle (z 0, assembler), north at x -2, 0, 2 (alloy
+forge), north at x 0 plus west and east (machining bay), north at x -1 and 1 (neutroamine) and at x -1, 0, 1 (medicine). The
+alloy forge (1.79, its handwheel) is taller than a storey. Its lit parts (coil windows, the tank hatch, the crucible floor,
+the output strip) use the B3 glow method (`beam_` faces, `_unlit` model in the state `vfef_unpowered`), and so does the B2
+crematorium's furnace mouth since this batch. Where VFE's south, east and west art keeps the tanks, vats or bowl at the back of
+the picture, the models follow the north art. Parts, sizes and review sheets: `model-review/vfefactory_b4/` and the header
+of `tools/make_vfefactory_b4.py`.
+
 Vanilla Furniture Expanded - Factory is made by the Vanilla Expanded team (Oskar Potocki and others). The models are new, made after VFE's art; this pack contains no files of the original mod.
 
 MIT License.

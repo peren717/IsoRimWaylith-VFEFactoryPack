@@ -60,3 +60,7 @@ newmtl vfef2_moss
 Kd 0.50 0.51 0.44
 newmtl vfef2_dial
 Kd 0.30 0.30 0.31
+newmtl vfef2_lit_base
+Kd 0.32 0.17 0.08
+newmtl beam_vfef2_furnace
+Kd 0.75 0.36 0.06

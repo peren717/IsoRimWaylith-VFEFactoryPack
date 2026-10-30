@@ -22,7 +22,7 @@
     <defName>R3D_VFEF_AutomatedDistillery</defName>
     <model>Models/vfef_distillery.obj</model>
   </IsoRim.ModelDef>
-  <IsoRim.ModelDef>   <!-- furnace 1.38 -->
+  <IsoRim.ModelDef>   <!-- furnace 1.38; lit mouth, dark without power -->
     <defName>R3D_VFEF_AutomatedCrematorium</defName>
     <model>Models/vfef_crematorium.obj</model>
   </IsoRim.ModelDef>

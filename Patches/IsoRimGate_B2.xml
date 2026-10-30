@@ -47,6 +47,9 @@
       <xpath>/Defs/IsoRim.ModelDef[defName="R3D_VFEF_AutomatedCrematorium"]</xpath>
       <value>
         <thingDef>VFEFactory_AutomatedCrematorium</thingDef>
+        <byState>
+          <li><state>vfef_unpowered</state><model>Models/vfef_crematorium_unlit.obj</model></li>
+        </byState>
       </value>
     </apply>
   </Operation>

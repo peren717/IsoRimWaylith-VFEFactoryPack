@@ -21,7 +21,7 @@ namespace IsoRimVFEFactoryPack
     //    labels of items on a belt sit under the item as seen by the 3D camera (GetLabelScreenPos).
     //  - Factory glow (batch B3): IsoRim draws glow* faces lit always (it darkens them only for a CompGlower, which VFE's
     //    factories have not). A VFE Factory machine without power is in the model state "vfef_unpowered"; ModelDefs with
-    //    that state in byState (smelter, conveyor oven) draw their model with the glow faces dark then.
+    //    that state in byState (smelter, conveyor oven, crematorium; more in B4) draw their unlit model then.
     // VFE Factory is reached by name: a missing type or method leaves that part as VFE draws it (logged once).
     [StaticConstructorOnStartup]
     public static class Pack

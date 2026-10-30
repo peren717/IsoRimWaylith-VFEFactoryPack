@@ -1,0 +1,32 @@
+# IsoRim Waylith - VFE Factory Pack, batch B4: fixed colours sampled from VFE Factory's factory textures (lifted ~1.1x for
+# the 3D shading). Metal parts carry IsoRim's Metal swatch. B1 (vfef_*), B2 (vfef2_*) and B3 (vfef3_*: lit base, beam faces,
+# rust, teal, white) are reused.
+newmtl vfef4_block
+Kd 0.61 0.59 0.58
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef4_tankside
+Kd 0.47 0.31 0.24
+newmtl vfef4_lid
+Kd 0.60 0.58 0.57
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef4_teal
+Kd 0.20 0.36 0.41
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef4_teal_dk
+Kd 0.15 0.21 0.23
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef4_white
+Kd 0.86 0.85 0.84
+newmtl vfef4_liquid
+Kd 0.42 0.70 0.72
+newmtl vfef4_glass
+Kd 0.52 0.64 0.65
+newmtl vfef4_bench
+Kd 0.78 0.78 0.78
+map_Kd IsoRim/Swatches/Metal
+newmtl vfef4_window
+Kd 0.24 0.30 0.33
+newmtl vfef4_rod
+Kd 0.42 0.34 0.28
+newmtl vfef4_chrome
+Kd 0.74 0.74 0.75
